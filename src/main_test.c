@@ -29,14 +29,15 @@ int		main(int ac, char **av)
 	printf(">%s<\n", p5);
 	ft_strcpy(p5, "lololol itz funi and it ovarflow lalalalalalallalalalla");
 
-	/*ft_free(p4);
-	ft_free(p5);
+	show_alloc_mem();
+	ft_free(p4);
 	ft_free(p3);
 	ft_free(p1);
-	ft_free(p2);*/
-	printf(">%s<\n", p5);
-	p5 = ft_realloc(p5, 1200);
-	printf(">%s<\n", p5);
+	ft_free(p2);
+	printf(">%p<\n", p5);
+	//p5 = ft_realloc(p5, 1200);
+	printf(">%p<\n", p5);
+	ft_free(p5);
 	show_alloc_mem();
 	return (0);
 }
