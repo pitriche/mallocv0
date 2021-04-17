@@ -6,11 +6,10 @@
 /*   By: pierre42 <pierre42@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 17:24:44 by pitriche          #+#    #+#             */
-/*   Updated: 2021/04/16 17:19:57 by pierre42         ###   ########.fr       */
+/*   Updated: 2021/04/16 17:29:11 by pierre42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_malloc.h"
 #include "libft.h"
 
 int		main(int ac, char **av)

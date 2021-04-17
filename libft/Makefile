@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+         #
+#    By: pierre42 <pierre42@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:27:46 by pitriche          #+#    #+#              #
-#    Updated: 2019/12/19 11:08:41 by pitriche         ###   ########.fr        #
+#    Updated: 2021/04/16 21:50:48 by pierre42         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ FLAGS = -Wall -Werror -Wextra
 CFLAGS = -c $(FLAGS)
 CINCLUDE = -I include
 
-NAME = libft.a
+NAME = libft_malloc_$(HOSTTYPE).so
 
 SRC = \
 pr_vasprintf.c\
@@ -59,6 +59,18 @@ ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_itoa.c ft_isspace.c ft_isprint.c\
 ft_isdigit.c ft_isascii.c ft_isalpha.c ft_isalnum.c ft_atoi.c ft_lstrev.c\
 ft_swap.c ft_pr_err.c ft_lstsort.c ft_longlen.c ft_lst_free_data.c\
 ft_lst_free.c ft_pr_errno.c gnlite.c\
+\
+ft_malloc.c		\
+malloc_data.c	\
+malloc_tiny.c	\
+malloc_small.c	\
+malloc_large.c	\
+ft_free.c		\
+ft_free_tiny.c	\
+ft_free_small.c	\
+ft_free_large.c	\
+ft_realloc.c	\
+show_alloc_mem.c\
 
 OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
@@ -66,11 +78,12 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 .PHONY: all clean fclean re
 
 all: $(OBJ_DIR) $(NAME)
-	@echo "$(CYAN)Libft ready sir !$(RESET)"
+	@echo "$(CYAN)$(NAME) ready sir !$(RESET)"
 
 $(NAME): $(OBJ)
-	@ar rc $@ $^
-	@ranlib $@
+	@gcc -shared -o $@ $^
+#	@ar rc $@ $^
+#	@ranlib $@
 
 $(addprefix $(OBJ_DIR), %.o) : %.c
 	@$(CC) $(CINCLUDE) $(CFLAGS) -o $@ $<

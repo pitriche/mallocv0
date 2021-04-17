@@ -6,7 +6,7 @@
 #    By: pierre42 <pierre42@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/07 14:21:44 by pitriche          #+#    #+#              #
-#    Updated: 2020/07/09 18:41:17 by pierre42         ###   ########.fr        #
+#    Updated: 2021/04/17 10:53:10 by pierre42         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,26 +29,19 @@ FLAGS = -Wall -Wextra $(FL_OPTI)
 LFLAGS = $(FLAGS)
 CFLAGS = -c $(FLAGS)
 
-LIB = libft/libft.a
+LIB_NAME = libft_malloc_$(HOSTNAME).so
+LIB = $(LIB_DIR)/$(LIB_NAME)
+LIBFLAGS = -L. -lft_malloc_$(HOSTNAME)
+LIB_DIR = libft
 
-HEADERS = include/ft_malloc.h libft/include/libft.h 
+HEADERS = libft/include/libft.h 
 CINCLUDE = -I include -I libft/include
 
 NAME = test
 
 SRC_FILES = 	\
 main_test.c		\
-ft_malloc.c		\
-malloc_data.c	\
-malloc_tiny.c	\
-malloc_small.c	\
-malloc_large.c	\
-ft_free.c		\
-ft_free_tiny.c	\
-ft_free_small.c	\
-ft_free_large.c	\
-ft_realloc.c	\
-show_alloc_mem.c\
+
 
 
 SRC_DIR = src/
@@ -63,7 +56,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OBJ_DIR) $(OBJ)
 	@echo "$(GREEN)objects done sir !$(RESET)"
-	@$(CC) $(LFLAGS) -o $(NAME) $(LIB) $(OBJ)
+	@$(CC) $(LFLAGS) -o $(NAME) $(LIBFLAGS) $(OBJ)
 	@echo "$(GREEN)$(NAME) compiled sir !$(RESET)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEADERS)
@@ -72,6 +65,7 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEADERS)
 
 $(LIB) :
 	@make -C libft
+	@cp -rf $(LIB) .
 
 $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
@@ -89,6 +83,7 @@ fclean: clean
 
 lclean: fclean
 	@make -C libft fclean
+	@rm -f $(LIB_NAME)
 	@echo "$(RED)libft deleted sir !$(RESET)"
 
 re: fclean all

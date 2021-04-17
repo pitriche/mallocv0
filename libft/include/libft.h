@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pitriche <pitriche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre42 <pierre42@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 19:05:26 by pitriche          #+#    #+#             */
-/*   Updated: 2019/05/13 13:42:04 by pitriche         ###   ########.fr       */
+/*   Updated: 2021/04/16 17:27:05 by pierre42         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <string.h>
 # include <stdarg.h>
+
+# include "ft_malloc.h"
 
 # define BUFF_SIZE 4200
 
